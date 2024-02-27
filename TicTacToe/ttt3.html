@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TicTacToeXO</title>
+</head>
+<style>
+    body {
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    min-height: 70vh;   
+    background-color: black;
+    color:bisque;
+   
+}
+
+.grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 400px; 
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 0, 0);
+}
+
+.square{
+    display: flex;
+    height: 100px;
+    width: 100px;
+    border: 2px solid white;
+    margin: 5px;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+}
+
+.square:hover{
+    background: rgb(81, 81, 215);
+    transition: all 0.3s ease;
+}
+
+.icon{
+    font-size: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    
+}
+.centered-content {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.text-content {
+    margin-bottom: 20px;
+}
+
+
+.player-turn{
+    border: 2px solid white;
+    display: flex;
+    margin: 20px auto;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 2px solid white;
+    text-align: center;
+    height: 40px;
+    width: 300px;
+    font-size: x-large;
+}
+
+.win-condition{
+    margin-top: 20px;
+    border: 2px solid white;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    width: 200px;
+    height: 40px;
+    font-size: large;
+}
+
+.win-condition:hover{
+    background: rgb(81, 81, 215);
+    transition: all 0.3s ease;
+}
+</style>
+
+
+
+<body>
+
+<div class="centered-content">
+    <div class="text-content"><h1> GO Tic Tac Toe</h1></div>
+        <div class="player-turn" id="player">Player X turn!</div>
+            <div class ="grid-container">
+                <script>
+                    const NUM_SQUARES = 9;
+                    for (i=0; i<NUM_SQUARES; i++){
+                    id = "sq"+i;
+                    document.write( "<div class='square' id='" + id + "'></div>" );
+                    }
+
+                </script>
+                        
+                    <div class = "win-condition" id = "win"> Play again!?!</div>
+                </div>
+            
+            </div>
+        </div>
+</div>
+
+<script> 
+function isEven(number) {
+    return number % 2 === 0;
+}
+
+function alternateplayer(){
+   let random = Math.floor(Math.random() * 10) + 1;
+   if(isEven(random)){
+    document.getElementById("player").textContent = "Player X turn!";
+    console.log("success")
+   }
+   else{
+    document.getElementById("player").textContent = "Player O turn!";
+    console.log("failure")
+    }
+}
+
+var squares = [];
+let random = Math.floor(Math.random() * 10) + 1;
+
+function getarray(){
+   document.querySelectorAll('.square').forEach(function(square, index) {
+    square.addEventListener('click', function(event) {
+        
+        if(event.target.textContent == ""){
+            if(isEven(random)){
+            event.target.textContent = 'X';
+            }
+            else{
+                event.target.textContent = 'O';
+            }
+        console.log(square.textContent)
+        alert(index);
+        random +=1
+        alternateplayer();
+        }
+        
+    });
+});
+    
+}
+
+function isEven(number) {
+    return number % 2 === 0;
+}
+
+function alternateplayer(){
+   if(isEven(random)){
+    document.getElementById("player").textContent = "Player X turn!";
+    console.log("success")
+   }
+   else{
+    document.getElementById("player").textContent = "Player O turn!";
+    console.log("failure")
+    }
+}
+
+function startover(){
+    document.getElementById("win").addEventListener('click', function(event){
+        var elements  = document.querySelectorAll('.square')
+        elements.forEach(function(elements) {
+            elements.textContent = ""
+        });
+    });
+}
+
+
+getarray();
+alternateplayer();
+startover();
+
+
+</script>
+
+
+
+
+</body>
+</html>
